@@ -54,18 +54,32 @@ function showPage(list, page) {
    functionality to the pagination buttons.
 ***/
 function appendPageLinks(list) {
-   // determines number of pages needed to display all students
+   // determines number of pages needed based on 10 students per page
    const numOfPages = Math.ceil(list.length / 10);
-   // creates a div to contain pagination data
-   const pagination = `
-      <div class="pagination">
-         <ul>
-         </ul>
-      </div>
-   `
-   // selects div with class name of page
+   const div = document.createElement("div");
+   const ul = document.createElement("ul");
    const page = document.querySelector(".page");
-   page.appendChild(pagination);
+
+   // adds pagination class name to new div and appends it to .page, then appends new ul to new div
+   div.className = "pagination";
+   page.appendChild(div);
+   div.appendChild(ul);
+
+   // creates pagination buttons when the list contains more than 10 students
+   for (let i = 1; i <= numOfPages; i++) {
+      if (numOfPages > 1) {
+         const li = document.createElement("li");
+         const a = document.createElement("a");
+
+         a.textContent = i;
+         ul.appendChild(li);
+         li.appendChild(a);
+      }
+   }
+
+
+
+
 
 }
 
