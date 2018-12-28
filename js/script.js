@@ -54,6 +54,27 @@ appendPageLinks = (list) => {
    });
 }
 
+// creates and appends search elements
+search = () => {
+   const div = document.createElement("div");
+   const input = document.createElement("input");
+   const button = document.createElement("button");
+   const pageHeader = document.querySelector(".page-header");
+   
+   div.className = "student-search";
+   input.placeholder = "Search for students...";
+   button.textContent = "Search";
+   pageHeader.appendChild(div);
+   div.appendChild(input);
+   div.appendChild(button);
+}
+
+{/* <div class="student-search">
+          <input placeholder="Search for students...">
+          <button>Search</button>
+        </div> */}
+
 // calls functions on page load
 showPage(studentItem, 1);
 appendPageLinks(studentItem);
+search();
