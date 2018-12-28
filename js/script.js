@@ -46,11 +46,14 @@ appendPageLinks = (list) => {
 
    // uses event bubbling to create a click event for the pagination buttons
    document.addEventListener("click", (e) => {
-      // removes active class from previous a element and adds it to click target
-      document.querySelector(".active").className = "";
-      e.target.className = "active";
-      // calls the show page function using list and number of clicked pagination button
-      showPage(list, e.target.textContent);
+      // if click target is an a element do this
+      if (e.target.nodeName === "A") {
+         // removes active class from previous a element and adds it to click target
+         document.querySelector(".active").className = "";
+         e.target.className = "active";
+         // calls the show page function using list and number of clicked pagination button
+         showPage(list, e.target.textContent);
+      }
    });
 }
 
@@ -67,6 +70,14 @@ search = () => {
    pageHeader.appendChild(div);
    div.appendChild(input);
    div.appendChild(button);
+
+   // uses event bubbling to create a click event for the search button
+   document.addEventListener("click", (e) => {
+      // if click target is button element do this
+      if (e.target.nodeName === "BUTTON") {
+         console.log("button!");
+      }
+   });
 }
 
 {/* <div class="student-search">
