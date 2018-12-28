@@ -41,7 +41,7 @@ function showPage(list, page) {
    // loops through the students in the list argument
    for (let i = 0; i < list.length; i++) {
       // hides all of the students in the list
-      studentItem[i].style.display = "none";
+      list[i].style.display = "none";
       // displays the appropriate 10 students based on the page argument
       if (i >= pageDisplay - 10 && i <= pageDisplay -1) {
          list[i].style.display = "";
