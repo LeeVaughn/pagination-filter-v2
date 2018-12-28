@@ -75,15 +75,14 @@ search = () => {
    document.addEventListener("click", (e) => {
       // if click target is button element do this
       if (e.target.nodeName === "BUTTON") {
-         console.log("button!");
+         const query = input.value.toLowerCase();
+
+         for (let i = 0; i < studentItem; i++) {
+
+         }
       }
    });
 }
-
-{/* <div class="student-search">
-          <input placeholder="Search for students...">
-          <button>Search</button>
-        </div> */}
 
 // calls functions on page load
 showPage(studentItem, 1);
