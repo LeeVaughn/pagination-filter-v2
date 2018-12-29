@@ -78,12 +78,23 @@ search = () => {
          const query = input.value.toLowerCase();
          console.log(query);
          const studentItem = document.querySelectorAll(".student-item");
+         let searchList;
+         let match = false;
+         console.log(studentItem);
 
          for (let i = 0; i < studentItem.length; i++) {
             if (studentItem[i].innerHTML.indexOf(query) !== -1) {
+               match = true;
                console.log("match!");
+               searchList.push(studentItem[i]);
                console.log(studentItem[i]);
+               console.log(searchList);
             }
+         }
+         if (match === true) {
+            console.log("calling functions");
+            showPage(searchList, 1);
+            appendPageLinks(searchList);
          }
       }
    });
