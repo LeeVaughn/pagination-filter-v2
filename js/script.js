@@ -76,9 +76,14 @@ search = () => {
       // if click target is button element do this
       if (e.target.nodeName === "BUTTON") {
          const query = input.value.toLowerCase();
+         console.log(query);
+         const li = document.getElementsByTagName("li");
 
-         for (let i = 0; i < studentItem; i++) {
-
+         for (let i = 0; i < studentItem.length; i++) {
+            if (li[i].innerHTML.indexOf(query) !== -1) {
+               console.log("match!");
+               console.log(li[i]);
+            }
          }
       }
    });
