@@ -77,20 +77,29 @@ search = () => {
       if (e.target.nodeName === "BUTTON") {
          const query = input.value.toLowerCase();
          console.log(query);
+         // might not need this, creates nodeList vs HTML Collection
          const studentItem = document.querySelectorAll(".student-item");
+         console.log(studentItem);
+         const ul = document.createElement("ul");
+         const page = document.querySelector(".page");
          let searchList;
          let match = false;
-         console.log(studentItem);
+
+         ul.className = "search-list";
+         page.appendChild(ul);
 
          for (let i = 0; i < studentItem.length; i++) {
             if (studentItem[i].innerHTML.indexOf(query) !== -1) {
                match = true;
                console.log("match!");
-               searchList.push(studentItem[i]);
+               ul.appendChild(studentItem[i]);
                console.log(studentItem[i]);
-               console.log(searchList);
+               console.log(ul);
             }
          }
+
+         searchList = document.getElementsByClassName("search-list");
+
          if (match === true) {
             console.log("calling functions");
             showPage(searchList, 1);
