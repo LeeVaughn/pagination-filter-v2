@@ -76,10 +76,8 @@ search = () => {
       // if click target is button element do this
       if (e.target.nodeName === "BUTTON") {
          const query = input.value.toLowerCase();
-         console.log(query);
          // might not need this, creates nodeList vs HTML Collection
-         const studentItem = document.querySelectorAll(".student-item");
-         console.log(studentItem);
+         // const studentItem = document.querySelectorAll(".student-item");
          const ul = document.createElement("ul");
          const page = document.querySelector(".page");
          let searchList;
@@ -89,16 +87,28 @@ search = () => {
          page.appendChild(ul);
 
          for (let i = 0; i < studentItem.length; i++) {
+            studentItem[i].style.display = "none";
+         }
+
+         const pagination = document.querySelectorAll(".pagination li");
+
+         for (let i = 0; i < pagination.length; i++) {
+            pagination[i].style.display = "none";
+         }
+
+         for (let i = 0; i < studentItem.length; i++) {
             if (studentItem[i].innerHTML.indexOf(query) !== -1) {
                match = true;
-               console.log("match!");
+
+               studentItem[i].style.display = "block";
                ul.appendChild(studentItem[i]);
-               console.log(studentItem[i]);
-               console.log(ul);
             }
          }
 
-         searchList = document.getElementsByClassName("search-list");
+         // searchList = document.getElementsByClassName("search-list");
+         searchList = document.querySelectorAll(".search-list li");
+         console.log(searchList);
+         console.log(searchList.length);
 
          if (match === true) {
             console.log("calling functions");
