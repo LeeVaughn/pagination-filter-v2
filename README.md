@@ -4,7 +4,7 @@ The project uses pagination and filters to improve the user experience for a web
 
 ## Motivation
 
-This is a rebuild of the second project in Treehouse's Full Stack JavaScript Techdegree program. I originally created the
+This is a rebuild of the second project in Treehouse's Full Stack JavaScript Techdegree program. I originally built the
 project using jQuery but I decided to recreate it using vanilla JavaScript.
 
 ## Features
@@ -17,8 +17,8 @@ project using jQuery but I decided to recreate it using vanilla JavaScript.
 
 ## Links
 
-* [Project homepage](https://github.com/LeeVaughn/pagination-filter-v2)
-* Repository: coming soon!
+* [Repository](https://github.com/LeeVaughn/pagination-filter-v2)
+* [Project homepage](https://leevaughn.github.io/pagination-filter-v2/)
 
 ## Author
 
