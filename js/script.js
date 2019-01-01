@@ -10,7 +10,8 @@ showPage = (list, page) => {
       // hides all of the students in the list
       list[i].style.display = "none";
       // displays the appropriate 10 students based on the page argument
-      if (i >= pageDisplay - 10 && i <= pageDisplay -1) {
+      if (i >= pageDisplay - 10 && i <= pageDisplay - 1) {
+         console.log(list);
          list[i].style.display = "";
       }
    }
@@ -76,8 +77,7 @@ search = () => {
       // if click target is button element do this
       if (e.target.nodeName === "BUTTON") {
          const query = input.value.toLowerCase();
-         // might not need this, creates nodeList vs HTML Collection
-         // const studentItem = document.querySelectorAll(".student-item");
+         const pagination = document.querySelector(".pagination");
          const ul = document.createElement("ul");
          const page = document.querySelector(".page");
          let searchList;
@@ -86,26 +86,24 @@ search = () => {
          ul.className = "search-list";
          page.appendChild(ul);
 
+         // hides any existing student lists
          for (let i = 0; i < studentItem.length; i++) {
             studentItem[i].style.display = "none";
          }
 
-         const pagination = document.querySelectorAll(".pagination li");
+         // removes any previous pagination
+         pagination.remove();
 
-         for (let i = 0; i < pagination.length; i++) {
-            pagination[i].style.display = "none";
-         }
-
+         // loops over default student list to check for students that contain query term
          for (let i = 0; i < studentItem.length; i++) {
             if (studentItem[i].innerHTML.indexOf(query) !== -1) {
                match = true;
 
-               studentItem[i].style.display = "block";
+               studentItem[i].style.display = "none";
                ul.appendChild(studentItem[i]);
             }
          }
 
-         // searchList = document.getElementsByClassName("search-list");
          searchList = document.querySelectorAll(".search-list li");
          console.log(searchList);
          console.log(searchList.length);
