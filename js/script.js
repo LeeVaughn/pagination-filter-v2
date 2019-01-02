@@ -5,13 +5,14 @@ showPage = (list, page) => {
    // creates a variable to simplify the if statement in the for loop
    const pageDisplay = page * 10;
 
+   // console.log(list);
+
    // loops through the students in the list argument
    for (let i = 0; i < list.length; i++) {
       // hides all of the students in the list
       list[i].style.display = "none";
       // displays the appropriate 10 students based on the page argument
       if (i >= pageDisplay - 10 && i <= pageDisplay - 1) {
-         console.log(list);
          list[i].style.display = "";
       }
    }
@@ -53,6 +54,8 @@ appendPageLinks = (list) => {
          document.querySelector(".active").className = "";
          e.target.className = "active";
          // calls the show page function using list and number of clicked pagination button
+         console.log(list);
+         console.log(e.target.textContent);
          showPage(list, e.target.textContent);
       }
    });
