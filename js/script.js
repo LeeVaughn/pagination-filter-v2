@@ -25,6 +25,7 @@ appendPageLinks = (list) => {
    const div = document.createElement("div");
    const ul = document.createElement("ul");
    const page = document.querySelector(".page");
+   let buttons;
 
    // adds pagination class name to new div and appends it to .page, then appends new ul to new div
    div.className = "pagination";
@@ -40,25 +41,25 @@ appendPageLinks = (list) => {
          a.textContent = i;
          ul.appendChild(li);
          li.appendChild(a);
+
+         // adds active class to first a element
+         document.querySelector("a").className = "active";
       }
    }
 
-   // sets active class on first pagination button
-   document.querySelector("a").className = "active";
-
-   // uses event bubbling to create a click event for the pagination buttons
-   document.addEventListener("click", (e) => {
-      // if click target is an a element do this
-      if (e.target.nodeName === "A") {
-         // removes active class from previous a element and adds it to click target
+   buttons = document.querySelectorAll("a");
+   
+   // loops over pagination buttons and adds event listener
+   for (let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", (e) => {
+         // removes active class from other buttons and adds it to click target
          document.querySelector(".active").className = "";
          e.target.className = "active";
+
          // calls the show page function using list and number of clicked pagination button
-         console.log(list);
-         console.log(e.target.textContent);
          showPage(list, e.target.textContent);
-      }
-   });
+      });
+   }
 }
 
 // creates and appends search elements
@@ -76,46 +77,41 @@ search = () => {
    div.appendChild(button);
 
    // uses event bubbling to create a click event for the search button
-   document.addEventListener("click", (e) => {
-      // if click target is button element do this
-      if (e.target.nodeName === "BUTTON") {
-         const query = input.value.toLowerCase();
-         const pagination = document.querySelector(".pagination");
-         const ul = document.createElement("ul");
-         const page = document.querySelector(".page");
-         let searchList;
-         let match = false;
+   document.querySelector("button").addEventListener("click", () => {
+      const query = input.value.toLowerCase();
+      const pagination = document.querySelector(".pagination");
+      const ul = document.createElement("ul");
+      const page = document.querySelector(".page");
+      let searchList;
+      let match = false;
 
-         ul.className = "search-list";
-         page.appendChild(ul);
+      ul.className = "search-list";
+      page.appendChild(ul);
 
-         // hides any existing student lists
-         for (let i = 0; i < studentItem.length; i++) {
+      // hides any existing student lists
+      for (let i = 0; i < studentItem.length; i++) {
+         studentItem[i].style.display = "none";
+      }
+
+      // removes any previous pagination
+      pagination.remove();
+
+      // loops over default student list to check for students that contain query term
+      for (let i = 0; i < studentItem.length; i++) {
+         if (studentItem[i].innerHTML.indexOf(query) !== -1) {
+            match = true;
+
             studentItem[i].style.display = "none";
+            ul.appendChild(studentItem[i]);
          }
+      }
 
-         // removes any previous pagination
-         pagination.remove();
+      searchList = document.querySelectorAll(".search-list li");
 
-         // loops over default student list to check for students that contain query term
-         for (let i = 0; i < studentItem.length; i++) {
-            if (studentItem[i].innerHTML.indexOf(query) !== -1) {
-               match = true;
-
-               studentItem[i].style.display = "none";
-               ul.appendChild(studentItem[i]);
-            }
-         }
-
-         searchList = document.querySelectorAll(".search-list li");
-         console.log(searchList);
-         console.log(searchList.length);
-
-         if (match === true) {
-            console.log("calling functions");
-            showPage(searchList, 1);
-            appendPageLinks(searchList);
-         }
+      if (match === true) {
+         console.log("calling functions");
+         showPage(searchList, 1);
+         appendPageLinks(searchList);
       }
    });
 }
