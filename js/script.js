@@ -5,8 +5,6 @@ showPage = (list, page) => {
    // creates a variable to simplify the if statement in the for loop
    const pageDisplay = page * 10;
 
-   // console.log(list);
-
    // loops through the students in the list argument
    for (let i = 0; i < list.length; i++) {
       // hides all of the students in the list
@@ -76,7 +74,7 @@ search = () => {
    div.appendChild(input);
    div.appendChild(button);
 
-   // uses event bubbling to create a click event for the search button
+   // creates a click event for the search button
    document.querySelector("button").addEventListener("click", () => {
       const query = input.value.toLowerCase();
       const pagination = document.querySelector(".pagination");
@@ -93,7 +91,7 @@ search = () => {
          studentItem[i].style.display = "none";
       }
 
-      // removes any previous pagination
+      // removes any previous pagination if it exists
       if (pagination) {
          pagination.remove();
       }
@@ -111,15 +109,15 @@ search = () => {
 
       searchList = document.querySelectorAll(".search-list li");
 
+      // if search field is empty string, reload original page
+      // else if search contains a match call funcions with searchList
+      // else if search contains no match display message to that effect
       if (query === "") {
-         console.log("blank");
          location.reload();
       } else if (match === true) {
-         console.log(query);
          showPage(searchList, 1);
          appendPageLinks(searchList);
       } else if (match === false) {
-         console.log("false");
          const div = document.createElement("div");
          const p = document.createElement("p")
 
