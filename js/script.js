@@ -94,24 +94,38 @@ search = () => {
       }
 
       // removes any previous pagination
-      pagination.remove();
+      if (pagination) {
+         pagination.remove();
+      }
 
       // loops over default student list to check for students that contain query term
       for (let i = 0; i < studentItem.length; i++) {
+         studentItem[i].style.display = "none";
          if (studentItem[i].innerHTML.indexOf(query) !== -1) {
             match = true;
 
-            studentItem[i].style.display = "none";
+            // studentItem[i].style.display = "none";
             ul.appendChild(studentItem[i]);
          }
       }
 
       searchList = document.querySelectorAll(".search-list li");
 
-      if (match === true) {
-         console.log("calling functions");
+      if (query === "") {
+         console.log("blank");
+         location.reload();
+      } else if (match === true) {
+         console.log(query);
          showPage(searchList, 1);
          appendPageLinks(searchList);
+      } else if (match === false) {
+         console.log("false");
+         const div = document.createElement("div");
+         const p = document.createElement("p")
+
+         p.textContent = "Sorry, no students were found matching that search criteria."
+         page.appendChild(div);
+         div.appendChild(p);
       }
    });
 }
